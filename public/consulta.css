@@ -1,0 +1,348 @@
+.consulta-container {
+    width: 100%;
+    max-width: 1000px;
+    padding: 2rem 0;
+}
+
+.header-section {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.btn-voltar {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: rgba(99, 102, 241, 0.1);
+    transition: all 0.3s;
+}
+
+.btn-voltar:hover {
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--primary-hover);
+}
+
+.search-box {
+    margin-top: 1.5rem;
+}
+
+.search-box input {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+    padding: 1rem 1.2rem;
+    font-size: 1.1rem;
+}
+
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.client-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeIn 0.5s ease-out backwards;
+}
+
+.client-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.client-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.client-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.client-id {
+    font-size: 0.75rem;
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--primary);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.client-detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.client-detail strong {
+    color: #cbd5e1;
+    margin-right: 0.5rem;
+    width: 70px;
+}
+
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0;
+    color: var(--text-secondary);
+    gap: 1rem;
+}
+
+.loading-state .spinner {
+    width: 40px;
+    height: 40px;
+    border-color: rgba(99, 102, 241, 0.3);
+    border-top-color: var(--primary);
+}
+
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px dashed var(--border-color);
+    color: var(--text-secondary);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.consulta-header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.consulta-header-actions h2 {
+    margin-bottom: 0;
+}
+
+/* ========================================== */
+/* MODAIS (GLASSMORPHISM TECHNOLOGY DESIGN) */
+/* ========================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Esconde visualmente de forma suave */
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Display flex é importante para manter a centralização. A classe hidden remove o ponteiro e a opacidade.
+Quando quisermos esconder totalmente (se precisar), ou usar o hidden para animação.
+*/
+
+.modal-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.2);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    padding: 2.5rem;
+    transform: translateY(0) scale(1);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.hidden .modal-content {
+    transform: translateY(30px) scale(0.95);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, #a5b4fc 0%, #818cf8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.danger-title {
+    background: linear-gradient(135deg, #fca5a5 0%, #ef4444 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s;
+    width: auto;
+    margin: 0;
+}
+
+.close-btn:hover {
+    color: var(--text-primary);
+    transform: none;
+    box-shadow: none;
+    background: transparent;
+}
+
+/* Estilos de Botões dos Cards */
+.card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1rem;
+}
+
+.btn-icon {
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0;
+}
+
+.btn-edit {
+    background: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.btn-edit:hover {
+    background: rgba(99, 102, 241, 0.3);
+    color: white;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+}
+
+.btn-delete {
+    background: rgba(239, 68, 68, 0.15);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-delete:hover {
+    background: rgba(239, 68, 68, 0.3);
+    color: white;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+}
+
+/* Modal Exclusão Específicos */
+.delete-modal {
+    text-align: center;
+}
+
+.warning-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.delete-warning {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.highlight-name {
+    color: #fca5a5;
+    font-size: 1.3rem;
+}
+
+.delete-subtext {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-cancel {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 0;
+    width: 100%;
+}
+
+.btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: var(--error);
+    margin-top: 0;
+    width: 100%;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}

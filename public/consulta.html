@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Clientes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="consulta.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="consulta-container">
+        <div class="header-section">
+            <div class="consulta-header-actions">
+                <h2>Clientes Cadastrados</h2>
+                <a href="index.html" class="btn-voltar">&larr; Voltar ao Cadastro</a>
+            </div>
+            <p class="subtitle">Consulte clientes por nome, ID ou telefone.</p>
+            
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Buscar por nome, ID ou telefone..." autocomplete="off">
+            </div>
+        </div>
+
+        <div id="loading" class="loading-state">
+            <div class="spinner"></div>
+            <p>Carregando clientes...</p>
+        </div>
+
+        <div id="error-message" class="alert error hidden"></div>
+
+        <div class="clients-grid" id="clients-grid">
+            <!-- Cards de clientes aparecerão aqui -->
+        </div>
+        
+        <div id="no-results" class="hidden no-results">
+            <p>Nenhum cliente encontrado para a busca atual.</p>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL DE EDIÇÃO (Design Tecnológico) -->
+    <!-- ========================================== -->
+    <div id="edit-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Editar Cliente</h3>
+                <button class="close-btn" id="close-edit-modal">&times;</button>
+            </div>
+            
+            <div id="modal-alert-message" class="alert hidden"></div>
+            
+            <form id="edit-form">
+                <!-- Campo Oculto para armazenar o ID do cliente que está sendo editado -->
+                <input type="hidden" id="edit-id">
+                
+                <div class="input-group">
+                    <label for="edit-nome">Nome Completo</label>
+                    <input type="text" id="edit-nome" required>
+                </div>
+                <div class="input-group">
+                    <label for="edit-cpf">CPF</label>
+                    <input type="text" id="edit-cpf" required>
+                </div>
+                <div class="input-group">
+                    <label for="edit-email">E-mail</label>
+                    <input type="email" id="edit-email" required>
+                </div>
+                <div class="input-group">
+                    <label for="edit-telefone">Telefone</label>
+                    <input type="text" id="edit-telefone" required>
+                </div>
+                <button type="submit" id="save-edit-btn">
+                    <span>Salvar Alterações</span>
+                    <div class="spinner hidden"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL DE EXCLUSÃO (Design Tecnológico) -->
+    <!-- ========================================== -->
+    <div id="delete-modal" class="modal-overlay hidden">
+        <div class="modal-content delete-modal">
+            <div class="modal-header">
+                <h3 class="danger-title">Excluir Cliente</h3>
+                <button class="close-btn" id="close-delete-modal">&times;</button>
+            </div>
+            <div class="delete-body">
+                <div class="warning-icon">⚠️</div>
+                <p class="delete-warning">Tem certeza que deseja excluir o cliente <br><strong id="delete-client-name" class="highlight-name"></strong>?</p>
+                <p class="delete-subtext">Esta ação não poderá ser desfeita e os dados serão apagados permanentemente do banco de dados.</p>
+            </div>
+            
+            <div id="delete-alert-message" class="alert hidden"></div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" id="cancel-delete-btn">Cancelar</button>
+                <button type="button" class="btn-danger" id="confirm-delete-btn">
+                    <span>Excluir Permanentemente</span>
+                    <div class="spinner hidden"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="consulta.js"></script>
+</body>
+</html>
